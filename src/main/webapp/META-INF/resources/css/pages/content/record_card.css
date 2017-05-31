@@ -1,0 +1,11 @@
+/*карточка записи единицы контента*/
+#record_card  {
+    border-spacing: 5px; 
+}
+
+span[widgetid=cancelButton], 
+span[widgetid=findRecordButton], 
+span[widgetid=saveRecordButton] {
+    float: right;
+    margin-right: 15px;
+}

@@ -1,0 +1,17 @@
+<%@page pageEncoding="utf-8"%>
+<%@taglib prefix="header" uri="http://www.springframework.org/tags"%>
+
+<!--подстановочный контекстный путь-->
+<header:url value="/" var="home"/>
+
+<base href="${home}">
+<link rel="shortcut icon" href="image/favicon.ico" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--[if IE]>
+<link rel="shortcut icon" href="image/favicon.ico" />
+<![endif]-->
+
+<style>
+    /*dojo-css-фреймворк*/
+    @import "webjars/dojo/1.10.4/dijit/themes/claro/claro.css";
+</style>

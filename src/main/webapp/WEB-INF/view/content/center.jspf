@@ -1,0 +1,41 @@
+<%@page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+
+<!--панель инструментов для редактирования записей-->
+<fieldset data-dojo-type="dijit/Fieldset" id="recordGridMenu">
+    <legend>запись</legend>
+
+    <c:if test="${userRole.admin}">
+        <!--добавить запись-->
+        <button type="button" id="addRecord"
+                data-dojo-type="dijit/form/Button"
+                onclick="addRecordButtonClick">
+            <span>добавить</span>
+        </button>
+    </c:if>
+
+    <c:if test="${!userRole.guest}">
+        <!--найти запись-->
+        <button type="button" id="findRecord"
+                data-dojo-type="dijit/form/Button"
+                onclick="findRecordButtonClick">
+            <span>найти</span>
+        </button>
+    </c:if>
+</fieldset>
+
+<!--таблица со списком контента-->
+<div id="contentGrid"></div>
+
+<!--кнопки для пейджинга-->
+<div id="pageLinks"></div>
+
+<!--центральная область страницы-->
+
+<%--
+<c:if test="${userRole.admin}">
+    <span>Вы зашли как администратор!</span>
+</c:if>
+
+<c:if test="${userRole.user}">
+    <span>Вы зашли как зарегестрированный пользователь!</span>
+</c:if>--%>

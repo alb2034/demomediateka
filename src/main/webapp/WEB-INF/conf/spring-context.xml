@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+
+       xsi:schemaLocation="
+        http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--файл конфигурации для всего Spring-приложения-->
+
+    <context:annotation-config />
+
+    <!--пакеты, подлежащие сканированию аннотаций -->
+    <!--для поиска MyBatis-компонентов-->
+    <mybatis:scan base-package="com.alb.dao" />
+
+    <!--поиск JPA - аннотаций-->
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+    <context:component-scan base-package="com.alb.service" />
+    <context:component-scan base-package="com.alb.dao" />
+    <context:component-scan base-package="com.alb.web" />
+
+    <!--расположение файла настройки Spring-приложения-->
+    <context:property-placeholder location="classpath:application.properties" />
+
+<!--    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.h2.driverClass}" />
+        <property name="url" value="${jdbc.h2.url}" />
+        <property name="username" value="${jdbc.h2.username}" />
+        <property name="password" value="${jdbc.h2.password}" />
+    </bean>-->
+
+    <!-- initialize Embedded DataSource. Встроенная база данных-->
+<!--    <jdbc:initialize-database data-source="dataSource">
+        <jdbc:script location="classpath:db/h2/db-schema.sql" encoding="utf-8" />
+        <jdbc:script location="classpath:db/h2/db-data.sql" encoding="utf-8" />
+    </jdbc:initialize-database>-->
+
+    <!--настройки подключения к встроенной в spring бд-->
+    <!--имя подключения к базеjdbc:h2:memory:dataSource-->
+    <jdbc:embedded-database id="dataSource" type="H2">
+        <jdbc:script location="classpath:db/h2/db-schema.sql" encoding="utf-8"/>
+        <jdbc:script location="classpath:db/h2/db-data.sql" encoding="utf-8"/>
+    </jdbc:embedded-database>
+
+    <!-- Hibernate-подключение к фабрике -->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <!-- MyBatis-подключение к фабрике -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <!--	<property name="typeAliasesPackage" value="org.alb.domain" />-->
+        <!--<property name="configLocation" value="classpath:mybatis.config.xml"/>-->
+    </bean>
+
+    <!--менеджер транзакций-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <bean id="jpaTxManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+
+    <!-- поддержка настройки транзакций через аннотации -->
+    <tx:annotation-driven proxy-target-class="false" />
+
+    <!--настройки подключения к mysql-бд-->
+    <!--<bean id="dataSource"
+        class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+        <property name="driverClassName" value="${jdbc.driver}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+    </bean>-->
+
+    <!--создание и заполнение таблиц mysql-бд-->
+    <!--<jdbc:initialize-database data-source="dataSource" ignore-failures="DROPS">
+        <jdbc:script location="classpath:db/mysql/db-schema.sql"/>
+        <jdbc:script location="classpath:db/mysql/db-data.sql"/>
+    </jdbc:initialize-database>-->
+</beans>

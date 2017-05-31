@@ -1,0 +1,13 @@
+<%@page pageEncoding="utf-8" %>
+
+<!--JQuery-framework-->
+<script src="webjars/jquery/1.10.2/jquery.min.js">
+</script>
+
+<!--Dojo-framework-->
+<script src="webjars/dojo/1.10.4/dojo/dojo.js" 
+        data-dojo-config="async: true, parseOnLoad: true">            
+</script>    
+
+<!--авторизация-->
+<script type="text/javascript" src="js/authorization/login.js"></script>  

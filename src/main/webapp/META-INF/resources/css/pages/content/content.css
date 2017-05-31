@@ -1,0 +1,173 @@
+/*ссылки*/
+a {
+    color: mediumvioletred;
+    font-style: italic;
+    font-weight: bold;
+    font-size: smaller;
+    font-family: Geneva;
+    text-decoration: none;
+}
+
+a:visited {
+    color: mediumvioletred;
+}
+
+a:hover, a:focus {
+    text-decoration: underline;
+}                       
+
+/*клавиша мыши нажата, но не отпущена*/
+a:active {
+    color:indianred;
+}
+
+/*цвета шрифта и фона для страницы*/
+body { 
+    background: #62042A; 
+    color: #ccc;  
+    /*margin: auto;*/   
+}
+
+html, body, #contentLayout {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/*затемненный фон для диалоговых окон*/
+.claro .dijitDialogUnderlay { 
+    background: #000; 
+}
+
+/* or applied to all gridx instances*/
+.gridx { 
+}
+
+#topPanel,#centerPanel {
+    background-color: #FC0;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+#topPanel {
+    height: 10%;
+}
+
+#centerPanel {
+    height: 85%;
+}
+
+#centerPanel, #headerEdge {
+    background-color: #62042A;
+}
+
+#bottomPanel {
+    height: 5%;
+    background-color: #333;
+    color: #FFF;
+    border: 0px;
+    font-size: smaller;
+}
+
+/*верхний декоротивный край шапки страницы*/
+#headerEdge {
+    margin: 0;
+    padding: 0;
+    height: 6px;
+}
+
+/*ширина и цвет шапки*/
+#header {
+    height: 90%;
+    width: 100%;
+}
+
+/*положение логотипа приложения*/
+#logo {
+    width: 75%;
+    height: 100%;
+    background-image: url('../../../image/logo.svg');
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+}  
+
+#logoutHref {
+    text-align: right;
+    vertical-align: middle;
+    padding-right: 10px;
+}
+
+/*размер и положение, внутренние поля меню таблицы*/
+#recordGridMenu {
+    text-align: center;    
+    -webkit-padding-before: 0.125em; 
+    -webkit-padding-after: 0.125em;
+}
+
+/*контейнер таблицы*/
+#gridContainer {
+    height: 75%;
+    width: 100%;
+}
+
+/*высота таблицы*/
+#contentGrid {
+    height: 80%;
+}
+
+/*размер и положение таблицы*/
+#contentGrid, #recordGridMenu {
+    margin-bottom: 5px;             
+}
+
+/*размер ячейки строк таблицы*/
+#contentGrid .gridxMain .gridxCell {
+    /*height: 70px;*/
+}
+
+/*выравнивание заголовок таблицы*/
+#contentGrid .gridxHeaderRow .gridxCell {
+    text-align: center; 
+}
+
+/*тень таблицы*/
+#contentGrid, #secondGrid   {
+    box-shadow: 5px 5px 10px #111;
+    -moz-box-shadow: 5px 5px 10px #111;
+    -webkit-box-shadow: 5px 5px 10px #111;
+}
+ 
+/*выравнивание кнопок для перелистывания записей таблицы*/
+#pageLinks {
+    text-align: center; 
+    margin-top: 10px;
+}
+
+.fullHeight {
+    height: 100%;
+}
+
+.fullSize {
+    width: 100%;
+    height: 100%;
+}
+
+#bottomTable {
+    display: table;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+#bottomTableRow {
+    display: table-row;
+}
+
+.bottomTableCell {
+    display: table-cell;
+    width: 33.33%;
+    vertical-align: middle
+}

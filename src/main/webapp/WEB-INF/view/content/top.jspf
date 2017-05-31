@@ -1,0 +1,24 @@
+<%@page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+
+<!--шапка страницы-->
+<div id="headerEdge"></div>
+
+<table id="header">
+    <tr>
+        <td id="logo">
+
+        </td>
+        <td id="logoutHref">
+            <!--ссылка выйти из авторизации, доступная при наличии авторизации-->
+            <c:choose>
+                <c:when test="${!userRole.guest}">
+                    <a href="logout" id="logOut">выйти</a>
+                </c:when>
+
+                <c:otherwise>
+                    <p>Вы, незарегестрированный пользователь!!!<p>
+                </c:otherwise>
+            </c:choose>
+        </td>
+    </tr>
+</table>

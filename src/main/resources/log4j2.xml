@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="30">
+    <Appenders>
+        <!--вывод логов на консоль-->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%highlight{%d{dd-MM-yyyy HH:mm:ss.SSS}} %c{1.} - %msg%n"/>
+        </Console>
+        
+        <!--вывод логов в файл-->
+        <RollingFile name="File" fileName="D:/library.html" 
+                     filePattern="D:/library-%d{yyyy-MM-dd HH}-%i.html.gz">
+            <HTMLLayout charset="UTF-8" title="Library Logs" locationInfo="true" />
+            <Policies>
+                <!--суточная ротация логов - каждые 24 часа-->
+                <TimeBasedTriggeringPolicy interval="24" modulate="true"/>
+                <!--максимальный размер лога - 10 Мб-->
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+            <!--сохраняются последние 5 файлов логов-->
+            <DefaultRolloverStrategy max="5"/>
+        </RollingFile>
+    </Appenders>
+    
+    <Loggers>
+        
+        <!--все логи с ошибками-->
+        <Root level="ERROR">
+            <AppenderRef ref="Console"/>
+        </Root>
+        
+        <!--логи пакета com.alb c уровнем инфо-->
+        <Logger name="com.alb" level="INFO" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="File"/>
+        </Logger>
+
+        <!--транзакции и запросы-->
+        <Logger name="org.mybatis.spring" level="INFO" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+
+        <Logger name="org.hibernate.transaction" level="DEBUG" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <!--<Logger name="org.hibernate" level="DEBUG" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>-->
+        <!--<Logger name="org.hibernate.SQL" level="TRACE" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>-->
+    </Loggers>
+</Configuration>

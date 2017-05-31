@@ -1,0 +1,44 @@
+<%@page pageEncoding="utf-8"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+<!--шапка страницы-->
+<div class="center">
+    <span id="authH3">Библиотека</span>
+    <span id="authH4">Добро пожаловать!</span>
+</div>
+
+<!--форма авторизации-->
+<form:form method="post" modelAttribute="userData" 
+           data-dojo-type="dijit/form/Form" id="auth_form" action="">
+
+    <dl>
+        <dt>
+            <form:select path="login"
+                    data-dojo-type="dijit/form/ComboBox"
+                    data-dojo-props="
+                        value: '',
+                        placeHolder: 'введите логин'" >
+                <option value="admin">admin</option>
+                <option value="user1">user1</option>
+                <option value="user2">user2</option>
+            </form:select>
+        </dt>
+        <dt>
+            <form:password path="password"
+                    data-dojo-type="dijit/form/TextBox"
+                    autocomplete="off"
+                    placeholder="введите пароль" />
+        </dt>
+        <dt id="signupHref">
+            <a href="signup">регистрация</a>
+        </dt>
+        <dt>
+            <!--Отправить данные для авторизации-->
+            <button id="auth_btn" />
+        </dt>
+    </dl>  
+
+</form:form> 
+
+<!--сообщение об ошибке связи с сервером-->
+<p id="auth_info"/>

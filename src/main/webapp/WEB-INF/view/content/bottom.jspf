@@ -1,0 +1,12 @@
+<%@page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+
+<!--подвал страницы-->
+<div class="fullHeight">
+    <div id="bottomTable">
+        <div id="bottomTableRow">
+            <div class="bottomTableCell">Выполнил: Аскаров Альберт</div>
+            <div class="bottomTableCell">На должность: Java-стажера</div>
+            <div class="bottomTableCell">Благодарности: сотрудникам ДатаТех<br>за предоставленное задание</div>
+        </div>
+    </div>
+</div>
