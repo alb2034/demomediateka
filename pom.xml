@@ -82,7 +82,7 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>LATEST</version>
+            <version>RELEASE</version>
         </dependency>
 
         <!--jdbc-подключение к бд mysql-->
@@ -122,12 +122,12 @@
             <version>1.10</version>
         </dependency>
 
-        <!--spring на tomcat-сервер-->
-        <dependency>
+        <!--spring на tomcat-сервер !!! подключается только при использовании приложении на Spring Boot-->
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <version>1.5.3.RELEASE</version>
-        </dependency>
+        </dependency>-->
         
         <!--интерфейс логгирования-->   
         <dependency>
