@@ -7,7 +7,7 @@
         </Console>
         
         <!--вывод логов в файл-->
-        <RollingFile name="File" fileName="D:/library.html" 
+        <RollingFile name="File" fileName="E:/Desktop/projects/ibrary.html"
                      filePattern="D:/library-%d{yyyy-MM-dd HH}-%i.html.gz">
             <HTMLLayout charset="UTF-8" title="Library Logs" locationInfo="true" />
             <Policies>
