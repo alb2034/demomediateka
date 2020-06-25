@@ -21,6 +21,10 @@ docker run --name mediateka
 -v ${ABSOLUTE_PROJECT_PATH}/target/${WAR_FILENAME}:/usr/local/tomcat/webapps/${WAR_FILENAME}
 -p 8080:8080 -p 8000:8000 learn-mediateka
    ```
+### Доступ к приложению:
+   ```bash
+http://localhost:8080/
+   ```
 
 ### При необходимости подключения к серверу для отладки:
 
