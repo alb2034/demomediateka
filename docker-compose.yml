@@ -1,0 +1,27 @@
+version: '3.4'
+
+x-mediateka:
+  &base-mediateka
+  image: learn-mediateka
+  build:
+    context: .
+    dockerfile: docker/Dockerfile
+  volumes:
+    - ./target/library.course-0.0.1-SNAPSHOT:/usr/local/tomcat/webmediatekas/library.course-0.0.1-SNAPSHOT
+  ports:
+    - 8080:8080
+    - 8000:8000
+
+services:
+  mediateka:
+    << : *base-mediateka
+    container_name: mediateka
+    command: catalina.sh run
+
+  mediateka_debug:
+    << : *base-mediateka
+    container_name: mediateka_debug
+    environment:
+      - JPDA_ADDRESS=8000
+      - JPDA_TRANSPORT=dt_socket
+    command: catalina.sh jpda run

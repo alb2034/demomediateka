@@ -1,33 +1,32 @@
-## Развертывание приложения на Tomcat 7 помощи docker-образа 
+## Развертывание приложения на Tomcat 7 в docker-контейнере 
 
-### При необходимости запуска приложения в режиме отладки:
-
-в файле docker/_Dockerfile_ расскомментировать и закомментировать строки:
+### Первичная сборка и запуск:
    ```bash
-#CMD ["catalina.sh", "jpda", "run"]
-CMD ["catalina.sh", "run"]
+docker-compose up app
    ```
-в соответствующем порядке.
-
-### Сборка:
+### Последующие запуск и остановка:
 
    ```bash
-docker build --rm -t learn-mediateka .
-   ```
-### Запуск:
-
-   ```bash
-docker run --name mediateka
--v ${ABSOLUTE_PROJECT_PATH}/target/${WAR_FILENAME}:/usr/local/tomcat/webapps/${WAR_FILENAME}
--p 8080:8080 -p 8000:8000 learn-mediateka
+docker-compose start app
+docker-compose stop app
    ```
 ### Доступ к приложению:
    ```bash
 http://localhost:8080/
    ```
 
-### При необходимости подключения к серверу для отладки:
+### Отладка:
+a. запустить контейнер в режиме отладки:
+   ```bash
+docker-compose up app_debug
+   ```
 
+b. подключиться к контейнеру:
 - IDE Run/Debug Configurations
 - Create Remote Configuration
 - Host: **localhost**, port: **8000**
+
+### Удаление контейнеров и образа:
+   ```bash
+docker-compose down --rmi all
+   ```
