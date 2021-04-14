@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 /**
  * Rest-сервис, реализующий CRUID-операции над единицами контента. Кроме того,
  * сервис имеет функцую подгрузки детального описания контента по его id,
@@ -117,12 +120,12 @@ public class ManyContentController {
         @RequestParam("name") String name, 
         @RequestParam("author") String author, 
         @RequestParam("groupId") Long groupId,
-        @RequestHeader(value = "Range", required = false) String range) {
+        @RequestHeader(value = "Range", required = false) String range) throws UnsupportedEncodingException {
            
         log.info("Клиент {} отправил запрос на фильтрованный список "
                 + "с заголовком Range: {}", userRole, range);
         
-        Content contentPattern = new Content(addPercents(name), addPercents(author));
+        Content contentPattern = new Content(decodeAndAddPercents(name), decodeAndAddPercents(author));
         contentPattern.setGroupId(groupId);
         
         RangeHeader rangeHeader = new RangeHeader(range);
@@ -223,8 +226,9 @@ public class ManyContentController {
                 : new ResponseEntity(HttpStatus.NOT_FOUND);     
     }
     
-    private String addPercents(String s) {
-        return "%" + s + "%";
+    private String decodeAndAddPercents(String s) throws UnsupportedEncodingException {
+        String result = URLDecoder.decode(s, "UTF-8");
+        return "%" + result + "%";
     }
     
     @ExceptionHandler(RuntimeException.class)

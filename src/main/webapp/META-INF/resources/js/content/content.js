@@ -72,8 +72,8 @@ hideRecordCardDialog = function () {
 //обработка запроса на удаление записи
 function deleteRecord(recordId) {
     var confirmValue = 
-            confirm("Вы действительно хотите удалить запись %" + 
-            getCurrentRecordRow().name + "%?");
+            confirm("Вы действительно хотите удалить запись \"" +
+            getCurrentRecordRow().name + "\"?");
     if (!confirmValue) {
         return;
     }
@@ -178,8 +178,13 @@ function addRecordMenuToGrid(Menu, MenuItem) {
 //отображает 1-ю порцию списка записей
 //определяет кол-во порций и
 //отображает кнопки для перехода между ними
-function getPartOfContent(query, start, count, Store, Button) {
-    jsonRest.target = listServicePath;
+function getPartOfContent(query, target, start, count, Store, Button) {
+    if (target != null) {
+        jsonRest.target = target;
+    } else {
+        jsonRest.target = listServicePath;
+    }
+
 
     //выдать порцию записей
     var results = jsonRest.query(query, {
@@ -236,6 +241,7 @@ function getPartOfContent(query, start, count, Store, Button) {
                         lastPageButton = partNumber;
                         
                         getPartOfContent(query,
+                            target,
                             startRenderContent,
                             countRenderContent,
                             Store, Button);
@@ -286,16 +292,15 @@ function nodeIsExists(id) {
     return (node !== null);
 }
 
-function renderContent(query){
+function renderContent(query, target){
     require([
         "dojo/store/Memory",
         "dijit/form/Button"], 
     function(Store, Button){
-        jsonRest.target = listServicePath;
         //lastPageButton = 0;
         fstPageRender = true;
         //получить 1-ю порцию списка и кнопки для перехода на следующие
-        getPartOfContent(query, 0, count, Store, Button);
+        getPartOfContent(query, target, 0, count, Store, Button);
     });
 }
 

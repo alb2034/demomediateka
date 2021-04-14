@@ -200,9 +200,9 @@ function getContentJson() {
 }
 
 function getContentJsonWithoutDescription() {
-    return { 
-        name: query("#record_card #name")[0].value,
-        author: query("#record_card #author")[0].value,
+    return {
+        name: encodeURIComponent(query("#record_card #name")[0].value),
+        author: encodeURIComponent(query("#record_card #author")[0].value),
         groupId: groupSelect.value
     };
 }
@@ -266,8 +266,7 @@ function initCardFields(Button, FilteringSelect, Memory) {
         function () {
             cardDialog.hide();
             lastPageButton = 0;
-            jsonRest.target = listServicePath  +"/fsearch";
-            renderContent(getContentJsonWithoutDescription());
+            renderContent(getContentJsonWithoutDescription(), listServicePath  +"/fsearch");
     }); 
 
     //инициализация списка Коллекция

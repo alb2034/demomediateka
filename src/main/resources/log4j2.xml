@@ -3,7 +3,7 @@
     <Appenders>
         <!--вывод логов на консоль-->
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%highlight{%d{dd-MM-yyyy HH:mm:ss.SSS}} %c{1.} - %msg%n"/>
+            <PatternLayout charset="UTF-8" pattern="%highlight{%d{dd-MM-yyyy HH:mm:ss.SSS}} %c{1.} - %msg%n"/>
         </Console>
         
         <!--вывод логов в файл-->
@@ -29,9 +29,10 @@
         </Root>
         
         <!--логи пакета com.alb c уровнем инфо-->
-        <Logger name="com.alb" level="INFO" additivity="false">
+        <Logger name="com.alb" level="INFO" additivity="false" >
             <AppenderRef ref="Console"/>
             <AppenderRef ref="File"/>
+
         </Logger>
 
         <!--транзакции и запросы-->
