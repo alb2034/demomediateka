@@ -29,7 +29,7 @@
 
     <!--расположение для поиска статических ресурсов-->
     <mvc:resources mapping="/**" location="classpath:META-INF/resources/,META-INF/resources/" 
-                   cache-period="0" />
+                   cache-period="1000" />
     
     <!--Spring-фильтры-->
     <mvc:interceptors>
