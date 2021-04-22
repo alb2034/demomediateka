@@ -29,7 +29,7 @@ public class WelcomeController {
      * 
      * @return  представление 
      */
-    @RequestMapping(path =  {"/", "/welcome"})  
+    @RequestMapping(path =  {"/welcome"})
     public ModelAndView welcome() {       
         
         if (userRole == null || userRole.isGuest()) {
@@ -42,6 +42,6 @@ public class WelcomeController {
         }
         log.info("Клиент {} уже авторизован, "
                 + "перенаправление на страницу со списком.", userRole);
-        return new ModelAndView("content/content");
+        return new ModelAndView("redirect:/content");
     }
 }
