@@ -1,0 +1,22 @@
+/*поля, выравнивание заголовка страницы*/
+.center {
+    margin-top: 15px;
+    text-align: center;   
+}
+
+/*разбиение зоголовка на несколько строк*/
+.center span {
+   display: block;
+   margin: 10px;
+}
+
+/*заголовок h3*/
+#authH3 {
+    font-size: large;
+    font-weight: bold;
+}
+
+/*заголовок h4*/
+#authH4 {
+    font-size: medium;
+}

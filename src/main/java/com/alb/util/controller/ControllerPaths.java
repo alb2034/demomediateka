@@ -10,8 +10,6 @@ import java.util.HashMap;
 //@SuppressWarnings("Convert2Diamond")
 public class ControllerPaths {
     private final HashMap<String, String> pathMap;
-    @SuppressWarnings("FieldMayBeFinal")
-    private String defaultViewName;
 
     /**
      * Инициализирует объект пустой коллекцией имен представлений и 
@@ -19,7 +17,6 @@ public class ControllerPaths {
      */
     public ControllerPaths() {
         pathMap = new HashMap<>();     
-        defaultViewName = "index";
     }
     
     /**
@@ -31,7 +28,6 @@ public class ControllerPaths {
      */
     public ControllerPaths(String defaultViewName) {
         this();
-        this.defaultViewName = defaultViewName;
     }
     
     /**
@@ -46,18 +42,15 @@ public class ControllerPaths {
     }
     
     /** Возвращает имя представления по имени пути сервлета
-     * если имя пути сервлета не найдено - имя представления домашней страницы
+     * если имя пути сервлета не найдено - null
      * 
      * @param   servletPath
      *          имени пути сервлета
      * 
-     * @return  имя представления, соотвествующей {@code servletPath}
+     * @return  имя представления, соотвествующей {@code servletPath} либо
+     *          null, если не найдено
      */
     public String getViewName(String servletPath) {
-        String result = (String) 
-                pathMap.get(servletPath);
-        
-        return result != null 
-                ? result : defaultViewName;
+        return pathMap.get(servletPath);
     }   
 }

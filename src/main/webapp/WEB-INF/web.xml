@@ -26,6 +26,14 @@
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+    <!--для обработки ошибок запросов через доступ к файлу страницы-->
+    <!--н-р, http://localhost:8080/welcome.jsp-->
+    <!--для обработки ошибок обычного запросов см. CommonExceptionHandler-->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/view/error/error_404.jsp</location>
+    </error-page>
     
     <!--сессия-->
 <!--    <session-config>

@@ -17,18 +17,6 @@ public class ContentControllerPaths extends ControllerPaths {
         initPaths();
     }
     
-    /**
-     * Вызывает родительский конструктор с параметром @{code defaultViewName}.
-     * Инициирует объект коллекцией имен представлений.
-     * 
-     * @param   defaultViewName 
-     *          имя представления по умолчанию
-     */
-    public ContentControllerPaths(String defaultViewName) {
-        super(defaultViewName); 
-        initPaths();
-    }
-    
     private void initPaths() {
         HashMap<String, String> pathMap = new HashMap<>();
         pathMap.put("/content", "content/content");

@@ -1,0 +1,10 @@
+<%@page pageEncoding="utf-8"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+<!--шапка страницы-->
+<div class="center">
+    <span id="authH3">Ресурс не найден</span>
+    <a href="/">
+        <span id="authH4">на главную</span>
+    </a>
+</div>

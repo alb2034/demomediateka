@@ -1,9 +1,14 @@
 package com.alb.controller;
 
 import com.alb.util.controller.ContentControllerPaths;
-import javax.servlet.http.HttpServletRequest;
+import com.alb.web.UserRole;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  * Данный контроллер обрабатывает навигацию клиента по адресам приложения,
@@ -12,6 +17,10 @@ import org.springframework.web.bind.annotation.*;
  */
 @Controller
 public class CommonController {
+
+    @Autowired
+    private UserRole userRole;
+
     private final ContentControllerPaths paths;
     
     /**
@@ -19,7 +28,7 @@ public class CommonController {
      * искомого сервлета - "welcome"
      */
     public CommonController() {
-        paths = new ContentControllerPaths("welcome");
+        paths = new ContentControllerPaths();
     }
     
     /**
@@ -28,7 +37,16 @@ public class CommonController {
      * @return  имя представления   
      */
     @RequestMapping("/*")
-    public String content(HttpServletRequest request) {
-        return paths.getViewName(request.getServletPath());
+    public String content(HttpServletRequest request) throws IOException {
+        String servletPath = request.getServletPath();
+        String viewName = paths.getViewName(servletPath);
+
+        if (viewName == null) {
+            throw new FileNotFoundException(
+                    String.format("Клиент %s запросил несуществующий ресурс %s", userRole, servletPath)
+            );
+        }
+
+        return viewName;
     }     
 }
